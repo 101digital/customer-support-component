@@ -8,7 +8,7 @@
 
 To add the customer-support-component to React Native app, run this command with tag version
 
-```
+```sh
 yarn add https://github.com/101digital/customer-support-component.git#{tag-version}
 ```
 
