@@ -22,13 +22,17 @@ export class CustomerSupportService {
     return CustomerSupportService._instance;
   }
 
+  public initClients = (client: CustomerSupportClient) => {
+    this._client = client;
+  };
+
   public contactBaseUrl = (params: CustomerParam) => {
     if (this._client) {
       return `${this._client.contactBaseUrl}?${Object.entries(params)
         .map((obj) => `${obj[0]}=${obj[1]}`)
         .join('&')}`;
     } else {
-      'https://';
+      return 'http://';
     }
   };
 }
