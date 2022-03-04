@@ -1,0 +1,45 @@
+{
+  "id": "theme-component",
+  "name": "ThemeComponent",
+  "repository": "https://github.com/101digital/react-native-theme-component",
+  "dependencies": [
+    { "name": "@react-native-async-storage/async-storage", "version": "^1.15.5" },
+    { "name": "react-native-localize", "version": "^2.1.1" },
+    { "name": "react-native-svg", "version": "^12.1.1" }
+  ],
+  "templates": [],
+  "texts": {
+    "common": {
+      "lbl_error": "Something went wrong",
+      "msg_error": "We are experiencing some temporary difficulties. Please try again later or contact our support team.",
+      "btn_confirm": "OK",
+      "btn_cancel": "Cancel",
+      "msg_error_id": "(Error: %s)"
+    },
+    "country_picker": {
+      "lbl_select_country": "Select a country",
+      "plh_search_country": "Search country"
+    },
+    "date_picker": {
+      "btn_close": "Close",
+      "btn_done": "Done",
+      "lbl_select_date": "Select Date",
+      "lbl_select_date_range": "Select A Date Range",
+      "btn_apply_date_range": "Apply",
+      "btn_cancel_date_range": "Cancel"
+    },
+    "image_picker": {
+      "msg_loading_picker": "Please waiting...",
+      "msg_allow_file_type": "Allowed file types are PNG and JPG/JPEG",
+      "msg_max_file_size": "Maximum file size should be 2MB",
+      "msg_allow_access_camera": "Allow Application To Access Your Camera",
+      "msg_turn_camera_setting": "Tap Open Settings and turn on Camera to allow access.",
+      "btn_cancel": "Cancel",
+      "btn_open_setting": "Open Settings",
+      "msg_allow_access_photo": "Allow Application To Access Your Photos",
+      "msg_turn_photo_setting": "Tap Open Settings and turn on Photos to allow access",
+      "btn_take_photo": "Take photo",
+      "btn_choose_photo": "Choose photo"
+    }
+  }
+}
