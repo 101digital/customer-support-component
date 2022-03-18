@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { CustomerSupportComponentProps, CustomerSupportComponentStyles } from './types';
 import WebView from 'react-native-webview';
 import useMergeStyles from './theme';
@@ -11,16 +11,31 @@ const CustomerSupportComponent = (props: CustomerSupportComponentProps) => {
   const _styles: CustomerSupportComponentStyles = useMergeStyles(styles);
 
   return (
-    <View style={_styles.containerStyle}>
-      <WebView
-        scalesPageToFit
-        incognito
-        startInLoadingState
-        javaScriptEnabled
-        source={{ uri: CustomerSupportService.instance().contactBaseUrl(params) }}
-      />
-    </View>
+    <WebView
+      incognito
+      style={_styles.containerStyle}
+      startInLoadingState
+      javaScriptEnabled
+      source={{ uri: CustomerSupportService.instance().contactBaseUrl(params) }}
+      renderLoading={() => (
+        <View style={innerStyles.loadingIndicator}>
+          <ActivityIndicator color={'grey'} />
+        </View>
+      )}
+    />
   );
 };
+
+const innerStyles = StyleSheet.create({
+  loadingIndicator: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default CustomerSupportComponent;
