@@ -3,5 +3,5 @@ export interface CustomerParam {
   platform: string;
   name: string;
   email: string;
-  mobileNumber: string;
+  phone: string;
 }
