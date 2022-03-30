@@ -1,0 +1,66 @@
+{
+  "id": "customer-support-component",
+  "name": "Customer Support Component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/customer-support-component.git"
+  },
+  "config": {
+    "env": {
+      "development": {
+        "customerSupportBaseUrl": "https://contact.101digital.io"
+      },
+      "staging": {
+        "customerSupportBaseUrl": "https://contact.101digital.io"
+      },
+      "production": {
+        "customerSupportBaseUrl": "https://contact.101digital.io"
+      }
+    }
+  },
+  "dependencies": [],
+  "templates": [
+    {
+      "id": "customer-support-template-ud",
+      "templateName": "Customer Support Template for UD",
+      "componentName": "CustomerSupportComponent",
+      "imports": [
+        "import { CustomerSupportComponent } from 'customer-support-component';",
+        "import { AuthContext } from 'react-native-auth-component';"
+      ],
+      "headers": ["  const { profile } = useContext(AuthContext);"],
+      "renders": [
+        "      <CustomerSupportComponent",
+        "        params={{",
+        "          app: 'ud',",
+        "          platform: 'mobile',",
+        "          email: '',",
+        "          name: `${profile?.firstName ?? ''} ${profile?.lastName ?? ''}`,",
+        "          phone: profile?.mobileNumber ?? '',",
+        "        }}",
+        "      />"
+      ]
+    },
+    {
+      "id": "customer-support-template-101Pay",
+      "templateName": "Customer Support Template for 101Pay",
+      "componentName": "CustomerSupportComponent",
+      "imports": [
+        "import { CustomerSupportComponent } from 'customer-support-component';",
+        "import { AuthContext } from 'react-native-auth-component';"
+      ],
+      "headers": ["  const { profile } = useContext(AuthContext);"],
+      "renders": [
+        "      <CustomerSupportComponent",
+        "        params={{",
+        "          app: '101pay',",
+        "          platform: 'mobile',",
+        "          email: '',",
+        "          name: `${profile?.firstName ?? ''} ${profile?.lastName ?? ''}`,",
+        "          phone: profile?.mobileNumber ?? '',",
+        "        }}",
+        "      />"
+      ]
+    }
+  ]
+}
