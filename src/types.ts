@@ -5,7 +5,7 @@ export interface CustomerParam {
   email?: string;
   phone?: string;
   screen?: string;
-  hidenFields?: string[];
+  hiddenFields?: string[];
   groupId?: string;
   issueId?: string;
 }
