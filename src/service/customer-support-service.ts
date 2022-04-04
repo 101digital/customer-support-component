@@ -29,7 +29,11 @@ export class CustomerSupportService {
   public contactBaseUrl = (params: CustomerParam) => {
     if (this._client) {
       return `${this._client.contactBaseUrl}?${Object.entries(params)
-        .map((obj) => `${obj[0]}=${obj[1]}`)
+        .map((obj) => {
+          const key = obj[0];
+          const values = Array.isArray(obj[1]) ? obj[1].join(',') : obj[1];
+          return `${key}=${values}`;
+        })
         .join('&')}`;
     } else {
       return 'http://';
