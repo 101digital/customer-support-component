@@ -43,7 +43,7 @@ const SelectCategoryModal = ({
   return (
     <BottomSheet onBackButtonPress={onClose} onBackdropPress={onClose} isVisible={isVisible}>
       <View style={styles.containerStyle}>
-        <Text style={styles.modalTitleStyle}>Select gender</Text>
+        <Text style={styles.modalTitleStyle}>Select Category</Text>
         <RadioButtonGroup style={{
             container: {
                 marginBottom: 0

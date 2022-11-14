@@ -1,13 +1,14 @@
-import { CustomerParam } from '../types';
+import { ClientData, CustomerParam } from '../types';
 
 type CustomerSupportClient = {
+  customerSupportClient: any;
   contactBaseUrl: string;
 };
 
 export class CustomerSupportService {
   private static _instance: CustomerSupportService = new CustomerSupportService();
 
-  private _client?: CustomerSupportClient;
+  private _customerSupportclient?: any;
 
   constructor() {
     if (CustomerSupportService._instance) {
@@ -23,16 +24,26 @@ export class CustomerSupportService {
   }
 
   public initClients = (client: CustomerSupportClient) => {
-    this._client = client;
+    this._customerSupportclient = client.customerSupportClient;
   };
 
-  public contactBaseUrl = (params: CustomerParam) => {
-    if (this._client) {
-      return `${this._client.contactBaseUrl}?${Object.entries(params)
-        .map((obj) => `${obj[0]}=${obj[1]}`)
-        .join('&')}`;
+  public submitRequest = async (data: FormData) => {
+    if (this._customerSupportclient) {
+      try{
+      console.log('api request -> data ', {
+        data,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      const response = await this._customerSupportclient.post('requests', data);
+      console.log('api request response ', response.data);
+      return response.data;
+      } catch(error) {
+        console.log('error', error);
+        console.log('message -> request',error?.request);
+        console.log('message',error?.response?.data?.errors[0]);
+      }
     } else {
-      return 'http://';
+      console.log('Customer service is not exists');
     }
-  };
+  }
 }
