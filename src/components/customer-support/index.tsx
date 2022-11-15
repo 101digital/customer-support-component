@@ -12,6 +12,7 @@ import SelectSubjectModal from 'customer-support-component/src/components/custom
 import { categorySelections, subjectSelections } from 'customer-support-component/src/const';
 import { DocumentPickerResponse } from 'react-native-document-picker';
 import { CustomerSupportService } from '../../service/customer-support-service';
+import { i18n } from '@/translations/translation-config';
 
 const siteKey = '6LfvtkcfAAAAAHQniYzxVOByhcMqx7lN1P5yx9fj';
 const baseUrl = 'https://contact.uniondigitalbank.io';
@@ -155,12 +156,12 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
               >
 
               <Text style={styles.labelTextStyle}>
-                {'Full name'}
+                {i18n.t('customer_support.fullName')}
               </Text>
               <InputField
                 name="fullName"
                 placeholder={
-                  "Enter your full name"
+                  i18n.t("customer_support.lbl_enter_full_name")
                 }
                 maxLength={100}
                 style={inputStyles}
@@ -172,18 +173,20 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
               <InputField
                 name="email"
                 placeholder={
-                  "Enter your email"
+                  i18n.t("customer_support.lbl_enter_email")
                 }
                 maxLength={100}
                 style={inputStyles}
               />
-                <Text style={styles.labelTextStyle}>{'Mobile number'}</Text>
+                <Text style={styles.labelTextStyle}>{
+                  i18n.t("customer_support.lbl_mobile_number")}</Text>
                 <InputPhoneNumber
                   dialCode={dialCode}
                   onPressDialCode={() => setIsShowCountryPicker(true)}
                   name="userPhone"
                   returnKeyType="done"
-                  placeholder={'Mobile number'}
+                  placeholder={
+                    i18n.t("customer_support.lbl_mobile_number")}
                   autoCapitalize="none"
                   style={phoneNumberInputStyles}
                   withDialCode={true}
@@ -203,7 +206,7 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
                   name="mainConcern"
                   value={subjectSelections.find(s => s.value === selectedSubject)?.title}
                   placeholder={
-                  'Select a subject'
+                    i18n.t("customer_support.lbl_select_subject")
                   }
                   pointerEvents="none"
                   editable={false}
@@ -225,7 +228,7 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
               {selectedSubject && (
                 <>
                 <Text style={styles.labelTextStyle}>
-                  {'Sub concern'}
+                   {i18n.t("customer_support.lbl_concern")}
                 </Text>
                 <TouchableOpacity
                   activeOpacity={0.8}
@@ -237,7 +240,8 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
                   <InputField
                     name="subConcern"
                     placeholder={
-                    'Select a category'
+                    
+                   i18n.t("customer_support.lbl_select_category")
                     }
                     value={categorySelections.find(s => s.subjectId === selectedSubject)?.options.find((opt) => opt.value === selectedCategory)?.title  }
                     pointerEvents="none"
@@ -259,7 +263,7 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
                 </TouchableOpacity>
               </>
               )}
-              <Text style={styles.labelTextStyle}>How can we help you?</Text>
+              <Text style={styles.labelTextStyle}>{i18n.t("customer_support.lbl_how_to_help")}</Text>
               <InputField
                 name="details"
                 placeholder={
@@ -281,11 +285,11 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
               />
               <Text style={styles.countDetailsLabel}>{`${(formikRef.current && formikRef.current.values) ? formikRef.current.values['details'].length: 0} /500`}</Text>
 
-              <Text style={styles.subTitle}>Add Attachments</Text>
-              <Text style={{marginTop: 10}}>Upload files in .jpg .png or .pdf format. Max of 5MB</Text>
+              <Text style={styles.subTitle}>{i18n.t("customer_support.lbl_add_attachments")}</Text>
+              <Text style={{marginTop: 10}}>{i18n.t("customer_support.lbl_attachment_limit")}</Text>
               
               <View style={{marginTop: 25}}>
-               <Button label={'Attach a file or photo'} bgColor={'white'} style={{
+               <Button label={i18n.t("customer_support.lbl_add_attachments_or_photo")} bgColor={'white'} style={{
                 primaryLabelStyle: {
                   color: colors.primaryButtonColor,
                 },
@@ -297,10 +301,10 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
               </View>
 
               {files.map((f) => renderRowFile(f))}
-              <Text style={styles.labelTextStyle}>Captcha</Text>
+              <Text style={styles.labelTextStyle}>{i18n.t("customer_support.lbl_captcha")}</Text>
               <View style={{marginTop: 8}}>
               <TouchableOpacity>
-                <CheckBox title={`I'm not a robot`} style={{selectedBoxStyle: {backgroundColor: colors.primaryButtonColor}, unSelectedBoxStyle: {borderColor: colors.primaryButtonColor, borderWidth: 2}}} isSelected={isVerifiedCaptcha} onChanged={() => {
+                <CheckBox title={i18n.t("customer_support.lbl_not_robot")} style={{selectedBoxStyle: {backgroundColor: colors.primaryButtonColor}, unSelectedBoxStyle: {borderColor: colors.primaryButtonColor, borderWidth: 2}}} isSelected={isVerifiedCaptcha} onChanged={() => {
                   if(!isVerifiedCaptcha && recaptcha.current) {
                     recaptcha.current.open();
                   }
@@ -308,7 +312,7 @@ const CustomerSupportComponent = forwardRef(({props}: CustomerSupportComponentPr
               </TouchableOpacity>
               </View>
               <View  style={{marginTop: 70, marginBottom: 20}}>
-              <Button isLoading={isLoadingRequest} disabled={!isValid || !isVerifiedCaptcha} disableColor={colors.secondaryButtonColor} label='Submit' onPress={submitForm}/>
+              <Button isLoading={isLoadingRequest} disabled={!isValid || !isVerifiedCaptcha} disableColor={colors.secondaryButtonColor} label={i18n.t("customer_support.lbl_submit")} onPress={submitForm}/>
 
               </View>
              

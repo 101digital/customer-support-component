@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { i18n } from '@/translations/translation-config';
 
 export class CustomerSupportData {
   constructor(
@@ -17,21 +18,21 @@ export class CustomerSupportData {
 export const CustomerSupportSchema = Yup.object().shape({
   fullName: Yup.string()
     .trim()
-    .required('Please enter your full name'),
+    .required(`${i18n.t("customer_support.lbl_error_enter_full_name")}`),
   email: Yup.string()
   .trim()
-  .email('Invalid email pattern')
-  .required('Please enter your email'),
+  .email(`${i18n.t("customer_support.lbl_error_email_format")}`)
+  .required(`${i18n.t("customer_support.lbl_error_email")}`),
   userPhone: Yup.string()
   .trim()
-  .test('len', 'Please enter your phone number', (val: any) => val.length > 5),
+  .test('len', `${i18n.t("customer_support.lbl_error_phone")}`, (val: any) => val.length > 5),
   details: Yup.string()
   .trim()
-  .required('Please enter details'),
+  .required(`${i18n.t("customer_support.lbl_error_details")}`),
   mainConcern: Yup.string()
   .trim()
-  .required('Please select category'),
+  .required(`${i18n.t("customer_support.lbl_error_category")}`),
   subConcern: Yup.string()
   .trim()
-  .required('Please select sub concern'),
+  .required(`${i18n.t("customer_support.lbl_error_sub_concern")}`),
 });

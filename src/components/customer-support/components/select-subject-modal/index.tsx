@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { StyleProp, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { BottomSheet, Button, RadioButtonGroup, ThemeContext } from 'react-native-theme-component';
 import useMergeStyles from './styles';
+import { i18n } from '@/translations/translation-config';
 
 export type SelectSubjectModalProps = {
   isVisible: boolean;
@@ -32,7 +33,7 @@ const SelectSubjectModal = ({
   return (
     <BottomSheet onBackButtonPress={onClose} onBackdropPress={onClose} isVisible={isVisible}>
       <View style={styles.containerStyle}>
-        <Text style={styles.modalTitleStyle}>Select Subject</Text>
+        <Text style={styles.modalTitleStyle}>{i18n.t("customer_support.lbl_select_category")}</Text>
         <RadioButtonGroup style={{
             container: {
                 marginBottom: 0
